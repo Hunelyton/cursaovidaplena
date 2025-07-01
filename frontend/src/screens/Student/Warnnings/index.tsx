@@ -8,7 +8,7 @@ import { ListMobile } from '../../../components/ListMobile'
 import { useFieldsMobile } from './hooks/useFieldsMobile'
 
 export interface Subject {
-  _id: string
+  id: string
   name: string
   students: string[]
 }
@@ -22,12 +22,12 @@ export function Warnings() {
 
   function getWarnings() {
     setLoadingWarnings(true)
-    const idStudent = usersService.getUserInfo()._id
+    const idStudent = usersService.getUserInfo().id
 
     warningsService
       .getAll(idStudent)
       .then((res) => {
-        setWarnings(res.data.items)
+        setWarnings(res.data)
       })
       .catch((err) => {
         console.log('ERRO AO BUSCAR ADVERTÊNCIAS, ', err)

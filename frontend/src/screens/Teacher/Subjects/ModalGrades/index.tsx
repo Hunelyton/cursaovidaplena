@@ -17,7 +17,7 @@ interface Props {
 }
 
 export interface Grade {
-  _id: string
+  id: string
   firstGrade: number
   secondGrade: number
   student: {
@@ -40,9 +40,9 @@ export function ModalGrades({ open, handleClose, subjectData }: Props) {
   function getGrades() {
     setLoadingGetGrades(true)
     gradesService
-      .getAll(subjectData._id)
+      .getAll(subjectData.id)
       .then((res) => {
-        setGrades(res.data.items)
+        setGrades(res.data)
       })
       .catch((err) => {
         console.log(

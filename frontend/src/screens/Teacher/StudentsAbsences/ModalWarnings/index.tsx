@@ -24,7 +24,7 @@ interface Props {
 }
 
 export interface Warning {
-  _id: string
+  id: string
   uniqueId: string
   code: string
   title: string
@@ -62,7 +62,7 @@ export function ModalWarnings({
     event.preventDefault()
     setLoadingCrateWarning(true)
     warningsService
-      .create({ idStudent: studentData?._id, newWarningData })
+      .create({ idStudent: studentData?.id, newWarningData })
       .then((res) => {
         setAlertNotifyConfigs({
           ...alertNotifyConfigs,
@@ -91,9 +91,9 @@ export function ModalWarnings({
   function getWarnings() {
     setLoadingWarnings(true)
     warningsService
-      .getAll(studentData?._id)
+      .getAll(studentData?.id)
       .then((res) => {
-        setWarnings(res.data.items)
+        setWarnings(res.data)
       })
       .catch((err) => {
         console.log('ERRO AO BUSCAR ADVERTÊNCIAS')
@@ -157,12 +157,12 @@ export function ModalWarnings({
         {!isFormMode && !loadingWarnings && (
           <List className={style.fieldsContainer}>
             {warnings?.map((warning) => {
-              const isOpened = itemOpened[warning?._id] || false
+              const isOpened = itemOpened[warning?.id] || false
               return (
                 <div key={warning?.uniqueId} style={{ width: '100%' }}>
                   <ListItem
                     onClick={() => {
-                      handleListItemClick(warning?._id)
+                      handleListItemClick(warning?.id)
                     }}
                     className={style.warningItem}
                   >

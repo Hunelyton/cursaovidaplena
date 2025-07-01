@@ -33,7 +33,7 @@ export function ListStudent({
           return (
             <div
               style={{ opacity: loading ? 0.5 : 1 }}
-              key={item._id}
+              key={item.id}
               className={style.groupItem}
             >
               <ListItem className={style.listItem}>

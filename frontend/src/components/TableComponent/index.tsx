@@ -28,7 +28,7 @@ export function TableComponent({ columns, rows, loading, emptyText }: Props) {
           !loading &&
           rows?.map((row) => {
             return (
-              <tr key={row._id}>
+              <tr key={row.id}>
                 {columns.map((column) => {
                   return (
                     <td

@@ -30,10 +30,6 @@ public class AuthController {
                         .body(Map.of("message", "Invalid credentials")));
     }
 
-    @PostMapping("/users")
-    public User register(@RequestBody User user) {
-        return userRepository.save(user);
-    }
 
     static class LoginRequest {
         private String email;

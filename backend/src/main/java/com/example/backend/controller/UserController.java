@@ -19,7 +19,12 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @PutMapping("/")
+    @PostMapping({"", "/"})
+    public User create(@RequestBody User user) {
+        return userRepository.save(user);
+    }
+
+    @PutMapping({"", "/"})
     public User update(@RequestBody User user) {
         return userRepository.save(user);
     }

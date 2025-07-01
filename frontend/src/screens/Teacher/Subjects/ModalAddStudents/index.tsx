@@ -15,7 +15,7 @@ interface Props {
 }
 
 export interface Student {
-  _id: string
+  id: string
   name: string
   checked?: boolean
 }
@@ -40,10 +40,10 @@ export function ModalAddStudents({
 
     const selectedStudentsIdsToAdd = otherStudents
       .filter((student) => student?.checked)
-      .map((student) => student._id)
+      .map((student) => student.id)
 
     subjectsService
-      .insertStudents({ selectedStudentsIdsToAdd, subjectId: subjectData?._id })
+      .insertStudents({ selectedStudentsIdsToAdd, subjectId: subjectData?.id })
       .then(() => {
         setAlertNotifyConfigs({
           ...alertNotifyConfigs,
@@ -75,12 +75,12 @@ export function ModalAddStudents({
 
     const selectedStudentsIdsToRemove = registeredStudents
       .filter((student) => student?.checked)
-      .map((student) => student._id)
+      .map((student) => student.id)
 
     subjectsService
       .removeStudents({
         selectedStudentsIdsToRemove,
-        subjectId: subjectData?._id,
+        subjectId: subjectData?.id,
       })
       .then(() => {
         setAlertNotifyConfigs({
@@ -112,7 +112,7 @@ export function ModalAddStudents({
     studentsService
       .getAll()
       .then((res) => {
-        separateStudents(res.data.items)
+        separateStudents(res.data)
       })
       .catch((err) => {
         console.log('Erro ao buscar alunos, ' + err.response.data.message)
@@ -128,7 +128,7 @@ export function ModalAddStudents({
     const _otherStudents: Student[] = []
 
     newStudents.forEach((student) => {
-      const studentInserted = subjectData?.students?.includes(student?._id)
+      const studentInserted = subjectData?.students?.includes(student?.id)
 
       if (studentInserted) {
         _registeredStudents.push(student)
@@ -145,7 +145,7 @@ export function ModalAddStudents({
     const copyOtherStudent = [...otherStudents]
 
     copyOtherStudent.forEach((currentStudent) => {
-      if (currentStudent._id === student._id) {
+      if (currentStudent.id === student.id) {
         currentStudent.checked = !currentStudent.checked
       }
     })
@@ -157,7 +157,7 @@ export function ModalAddStudents({
     const copyRegisteredStudents = [...registeredStudents]
 
     copyRegisteredStudents.forEach((currentStudent) => {
-      if (currentStudent._id === student._id) {
+      if (currentStudent.id === student.id) {
         currentStudent.checked = !currentStudent.checked
       }
     })

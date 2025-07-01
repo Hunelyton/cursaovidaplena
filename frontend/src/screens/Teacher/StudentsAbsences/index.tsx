@@ -8,7 +8,7 @@ import { ModalWarnings, Warning } from './ModalWarnings'
 import { Loading } from '../../../components/Loading'
 
 export interface Student {
-  _id: string
+  id: string
   name: string
   warnings: Warning[]
 }
@@ -27,7 +27,7 @@ export function StudentsAbsences() {
     studentsService
       .getAll()
       .then((res) => {
-        setStudents(res.data.items)
+        setStudents(res.data)
       })
       .catch((err) => {
         console.log('ERRO AO BUSCAR ALUNOS, ', err)

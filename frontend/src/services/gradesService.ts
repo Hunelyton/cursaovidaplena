@@ -2,7 +2,7 @@ import http from '../api/http'
 import { usersService } from './usersService'
 
 interface UpdateParams {
-  _id: string
+  id: string
   firstGrade: number
   secondGrade: number
 }
@@ -12,7 +12,7 @@ export const gradesService = {
     return http.get(`/grades/subject/${idSubject}`)
   },
 
-  update({ _id: idGrade, firstGrade, secondGrade }: UpdateParams) {
+  update({ id: idGrade, firstGrade, secondGrade }: UpdateParams) {
     const body = {
       firstGrade,
       secondGrade,
@@ -24,7 +24,7 @@ export const gradesService = {
   },
 
   getGradesByStudent() {
-    const studentId = usersService.getUserInfo()._id
+    const studentId = usersService.getUserInfo().id
 
     return http.get(`/grades/student/${studentId}`)
   },

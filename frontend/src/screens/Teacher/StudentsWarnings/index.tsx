@@ -9,7 +9,7 @@ import { ListMobile } from '../../../components/ListMobile'
 import { useFieldsMobile } from './hooks/useFieldsMobile'
 
 export interface Student {
-  _id: string
+  id: string
   name: string
   warnings: Warning[]
 }
@@ -28,7 +28,7 @@ export function StudentsWarnings() {
     studentsService
       .getAll()
       .then((res) => {
-        setStudents(res.data.items)
+        setStudents(res.data)
       })
       .catch((err) => {
         console.log('ERRO AO BUSCAR ALUNOS, ', err)

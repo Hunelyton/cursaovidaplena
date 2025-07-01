@@ -45,19 +45,19 @@ export function ListMobile({
       {!loading &&
         items?.length > 0 &&
         items?.map((item: any) => {
-          const collapseOpened = itemOpened[item._id] || false
+          const collapseOpened = itemOpened[item.id] || false
 
           return (
             <div
               style={{
                 opacity: loading ? 0.5 : 1,
               }}
-              key={item._id}
+              key={item.id}
               className={style.groupItem}
             >
               <ListItem
                 onClick={() => {
-                  handleOpenItem(item._id)
+                  handleOpenItem(item.id)
                 }}
                 className={style.listItem}
               >

@@ -7,7 +7,7 @@ import { ListMobile } from '../../../components/ListMobile'
 import { useFieldsMobile } from './hooks/useFieldsMobile'
 
 export interface Grade {
-  _id: string
+  id: string
   subject: {
     name: string
   }
@@ -27,7 +27,7 @@ export function Grades() {
     gradesService
       .getGradesByStudent()
       .then((res) => {
-        setGrades(res.data.items)
+        setGrades(res.data)
       })
       .catch((err) => {
         console.log('ERRO AO BUSCAR ALUNOS, ', err)

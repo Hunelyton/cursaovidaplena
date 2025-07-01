@@ -2,7 +2,7 @@ import axios from 'axios'
 import { tokenService } from '../services/tokenService'
 
 const http = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:9090/',
 })
 
 http.interceptors.request.use(

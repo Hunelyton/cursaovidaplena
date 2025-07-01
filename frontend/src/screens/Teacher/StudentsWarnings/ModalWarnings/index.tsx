@@ -19,7 +19,7 @@ interface Props {
 }
 
 export interface Warning {
-  _id: string
+  id: string
   uniqueId: string
   code: string
   title: string
@@ -58,7 +58,7 @@ export function ModalWarnings({
     setLoadingCrateWarning(true)
 
     warningsService
-      .create({ idStudent: studentData?._id, newWarningData })
+      .create({ idStudent: studentData?.id, newWarningData })
       .then((res) => {
         setAlertNotifyConfigs({
           ...alertNotifyConfigs,
@@ -88,9 +88,9 @@ export function ModalWarnings({
   function getWarnings() {
     setLoadingWarnings(true)
     warningsService
-      .getAll(studentData?._id)
+      .getAll(studentData?.id)
       .then((res) => {
-        setWarnings(res.data.items)
+        setWarnings(res.data)
       })
       .catch((err) => {
         console.log('ERRO AO BUSCAR ADVERTÊNCIAS')

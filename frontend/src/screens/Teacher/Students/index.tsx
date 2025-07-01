@@ -11,7 +11,7 @@ import style from './Students.module.scss'
 import { useFieldsMobile } from './hooks/useFieldsMobile'
 
 export interface Student {
-  _id: string
+  id: string
   code: string
   name: string
   email: string
@@ -38,7 +38,7 @@ export function Students() {
     studentsService
       .getAll()
       .then((res) => {
-        setStudents(res.data.items)
+        setStudents(res.data)
       })
       .catch((err) => {
         console.log('ERRO AO BUSCAR DISCIPLINAS, ', err)
@@ -56,7 +56,7 @@ export function Students() {
       text: 'Deseja realmente excluir este aluno do sistema?',
       onClickAgree: () => {
         studentsService
-          .delete({ studentId: student?._id })
+          .delete({ studentId: student?.id })
           .then(() => {
             setAlertNotifyConfigs({
               ...alertNotifyConfigs,

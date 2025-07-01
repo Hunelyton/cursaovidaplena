@@ -12,7 +12,7 @@ import { useFieldsMobile } from './hooks/useFieldsMobile'
 import { ModalGrades } from './ModalGrades'
 
 export interface Subject {
-  _id: string
+  id: string
   name: string
   students: string[]
 }
@@ -39,7 +39,7 @@ export function Subjects() {
     subjectsService
       .getAll()
       .then((res) => {
-        setSubjects(res.data.items)
+        setSubjects(res.data)
       })
       .catch((err) => {
         console.log('ERRO AO BUSCAR DISCIPLINAS, ', err)
@@ -61,7 +61,7 @@ export function Subjects() {
       text: 'Deseja realmente excluir esta disciplina?',
       onClickAgree: () => {
         subjectsService
-          .delete({ idSubject: subject?._id })
+          .delete({ idSubject: subject?.id })
           .then(() => {
             setAlertNotifyConfigs({
               ...alertNotifyConfigs,
